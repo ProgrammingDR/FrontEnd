@@ -1,0 +1,76 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="title text-center">Registro de Empleado</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="title"> {{title}} </h5>
+                    <form [formGroup]="form" (ngSubmit)="agreagarEmpleado() ">
+                        <div class="input-group mb-3">
+                            <input formControlName="Nombre" type="text" class="form-control" placeholder="Nombre" >
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="Apellido" type="text" class="form-control" placeholder="Apellido">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="Cedula" type="text" class="form-control" placeholder="Cedula">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="Cargo" type="text" class="form-control" placeholder="Cargo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="Numero" type="text" class="form-control" placeholder="Numero">
+                        </div><div class="input-group mb-3">
+                            <input formControlName="Direccion" type="text" class="form-control" placeholder="Direccion">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button  type="submit" class="btn btn-success bg-primary btn-lg">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="title">Listado de Empleados</h5>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Nombre</td>
+                                <td>Apellido</td>
+                                <td>Cedula</td>
+                                <td>Cargo</td>
+                                <td>Numero</td>
+                                <td>Direccion</td>
+                                <td>Editar</td>
+                                <td>Eliminar</td>
+                            </tr>
+
+
+                            <tr *ngFor="let Empleados of empleado; let i = index">
+                                <td>{{Empleados.Nombre}}</td>
+                                <td>{{Empleados.Apellido}}</td>
+                                <td>{{Empleados.Cedula}}</td>
+                                <td>{{Empleados.Cargo}}</td>
+                                <td>{{Empleados.Numero}}</td>
+                                <td>{{Empleados.Direccion}}</td>
+                                <td><i class="fa-regular fa-pen-to-square text-info ed"></i></td>
+                                <td class="el"><i class="fa-regular fa-trash-can text-danger" (click)="eliminar(i)"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

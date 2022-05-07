@@ -1,0 +1,78 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="title text-center">Registro de Ventas</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="title"> {{title}} </h5>
+                    <form [formGroup]="form" (ngSubmit)="agreagarventa()">
+                        <div class="input-group mb-3">
+                            <select name="" id="" class="form-control" formControlName="Tipo">
+                                <option value="Bebidas">Bebidas</option>
+                                <option value="Comidas">Comidas</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Producto" formControlName="Producto">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="Empleado" type="text" class="form-control" placeholder="Empleado">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="Cliente" type="text" class="form-control" placeholder="Cliente">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="Cantidad" type="text" class="form-control" placeholder="Cantidad">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="Precio" type="text" class="form-control" placeholder="Precio">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button  type="submit" class="btn btn-success bg-primary btn-lg">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="title">Listado de Ventas</h5>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Tipo</td>
+                                <td>Producto</td>
+                                <td>Empleado</td>
+                                <td>Cliente</td>
+                                <td>Cantidad</td>
+                                <td>Precio</td>
+                                <td>Editar</td>
+                                <td>Eliminar</td>
+                            </tr>
+                            <tr *ngFor="let Ventas of venta; let i = index">
+                                <td>{{Ventas.Tipo}}</td>
+                                <td>{{Ventas.Producto}}</td>
+                                <td>{{Ventas.Empleado}}</td>
+                                <td>{{Ventas.Cliente}}</td>
+                                <td>{{Ventas.Cantidad}}</td>
+                                <td>{{Ventas.Precio}}</td>
+                                <td><i class="fa-regular fa-pen-to-square text-info"></i></td>
+                                <td><i class="fa-regular fa-trash-can text-danger" (click)="eliminar(i)" ></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

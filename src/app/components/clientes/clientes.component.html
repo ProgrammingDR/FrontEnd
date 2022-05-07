@@ -1,0 +1,61 @@
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="title text-center">Registro de Cliente</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="title"> {{title}} </h5>
+                    <form>
+                        <div class="input-group mb-3">
+                            <input formControlName="name" type="text" class="form-control" placeholder="Nombre" >
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="lastName" type="text" class="form-control" placeholder="Apellido">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="lastName" type="text" class="form-control" placeholder="Cedula">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="lastName" type="text" class="form-control" placeholder="Numero">
+                        </div><div class="input-group mb-3">
+                            <input formControlName="lastName" type="text" class="form-control" placeholder="Direccion">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button  type="submit" class="btn btn-success bg-primary btn-lg">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="title">Listado de Empleados</h5>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Darwin</td>
+                                <td>Regalado</td>
+                                <td>402-3020939-3</td>
+                                <td>(809) 590-0670</td>
+                                <td>Av.Jacobo Majluta</td>
+                                <td><i class="fa-regular fa-pen-to-square text-info"></i></td>
+                                <td><i class="fa-regular fa-trash-can text-danger" ></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
