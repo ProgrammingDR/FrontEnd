@@ -8,8 +8,12 @@ import { EmpleadosComponent } from './components/empleados/empleados.component';
 import { VentasComponent } from './components/ventas/ventas.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
-import { ContactoComponent } from './components/contacto/contacto.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import {HttpClientModule} from'@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     VentasComponent,
     ClientesComponent,
     PedidosComponent,
-    ContactoComponent
+    LoginComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,20 @@
 .el{
     cursor: pointer;
 }
+
+.green-icon{
+    border-color: #198754;
+}
+
+.red-icon{
+    border-color: #dc3545;
+}
+
+.card{
+    background:rgba(0,0,0,.2);
+    color: white;
+}
+
+.table{
+    color: white;
+}

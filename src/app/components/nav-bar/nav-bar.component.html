@@ -1,15 +1,31 @@
-<div class="container">
-    <div class="container-title">
-        <h1 class="title"><a routerLink="/">Cafeteria Paraiso</a></h1>
-    </div>
-    <div class="navigation">
-        <ul>
-            <li><a routerLink="/">Inicio</a></li>
-            <li><a routerLink="/empleados">Empleado</a></li>
-            <li><a routerLink="/ventas">Ventas</a></li>
-            <li><a routerLink="/clientes">Clientes</a></li>
-            <li><a routerLink="/pedidos">Pedidos</a></li>
-            <li><a routerLink="/contacto">Contacto</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark q">
+    <div class="container">
+      <img src="assets/IMG/logo.svg" alt=""  class="logo" routerLink="/inicio" style="cursor: pointer;">
+      <a class="navbar-brand" routerLink="/inicio">Cafeteria Paraiso</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/inicio">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/empleados">Empleado</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/ventas">Ventas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/clientes">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/pedidos">Pedidos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="cerrarsesion()" routerLink="/">Cerrar sesion</a>
+          </li>
         </ul>
+      </div>
     </div>
-</div>
+  </nav>

@@ -1,4 +1,4 @@
-
+<app-nav-bar></app-nav-bar>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
@@ -14,24 +14,24 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="title"> {{title}} </h5>
-                    <form>
+                    <form [formGroup]="form" (ngSubmit)="agregarCliente()">
                         <div class="input-group mb-3">
-                            <input formControlName="name" type="text" class="form-control" placeholder="Nombre" >
+                            <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre"  [class.green-icon]="this.form.get('nombre')?.valid" [class.red-icon]="this.form.get('nombre')?.invalid && this.form.get('nombre')?.touched" onkeydown="return /[a-z ]/i.test(event.key)">
                         </div>
                         <div class="input-group mb-3">
-                            <input formControlName="lastName" type="text" class="form-control" placeholder="Apellido">
+                            <input formControlName="apellido" type="text" class="form-control" placeholder="Apellido"  [class.green-icon]="this.form.get('apellido')?.valid" [class.red-icon]="this.form.get('apellido')?.invalid && this.form.get('apellido')?.touched" onkeydown="return /[a-z ]/i.test(event.key)">
                         </div>
                         <div class="input-group mb-3">
-                            <input formControlName="lastName" type="text" class="form-control" placeholder="Cedula">
+                            <input formControlName="cedula" type="text" class="form-control" placeholder="Cedula" [class.green-icon]="this.form.get('cedula')?.valid" [class.red-icon]="this.form.get('cedula')?.invalid && this.form.get('cedula')?.touched" >
                         </div>
                         <div class="input-group mb-3">
-                            <input formControlName="lastName" type="text" class="form-control" placeholder="Numero">
+                            <input formControlName="numero" type="text" class="form-control" placeholder="Numero"  [class.green-icon]="this.form.get('numero')?.valid" [class.red-icon]="this.form.get('numero')?.invalid && this.form.get('numero')?.touched">
                         </div><div class="input-group mb-3">
-                            <input formControlName="lastName" type="text" class="form-control" placeholder="Direccion">
+                            <input formControlName="direccion" type="text" class="form-control" placeholder="Direccion"  [class.green-icon]="this.form.get('direccion')?.valid" [class.red-icon]="this.form.get('direccion')?.invalid && this.form.get('direccion')?.touched" onkeydown="return /[a-z ]/i.test(event.key)">
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button  type="submit" class="btn btn-success bg-primary btn-lg">Agregar</button>
+                            <button  type="submit" class="btn btn-success bg-primary btn-lg" [disabled]="this.form.invalid">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -44,13 +44,22 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td>Darwin</td>
-                                <td>Regalado</td>
-                                <td>402-3020939-3</td>
-                                <td>(809) 590-0670</td>
-                                <td>Av.Jacobo Majluta</td>
-                                <td><i class="fa-regular fa-pen-to-square text-info"></i></td>
-                                <td><i class="fa-regular fa-trash-can text-danger" ></i></td>
+                                <td>Nombre</td>
+                                <td>Apellido</td>
+                                <td>Cedula</td>
+                                <td>Numero</td>
+                                <td>Direccion</td>
+                                <td>Editar</td>
+                                <td>Eliminar</td>
+                            </tr>
+                            <tr *ngFor="let cliente of clientes; let i = index">
+                                <td>{{cliente.nombre}}</td>
+                                <td>{{cliente.apellido}}</td>
+                                <td>{{cliente.cedula}}</td>
+                                <td>{{cliente.numero}}</td>
+                                <td>{{cliente.direccion}}</td>
+                                <td><i class="fa-regular fa-pen-to-square text-info"style="cursor: pointer;" (click)="editarCliente(cliente)"></i></td>
+                                <td><i class="fa-regular fa-trash-can text-danger" (click)="eliminar(cliente.id)" style="cursor: pointer;"></i></td>
                             </tr>
                         </tbody>
                     </table>

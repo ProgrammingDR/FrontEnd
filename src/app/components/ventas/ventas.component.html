@@ -1,3 +1,4 @@
+<app-nav-bar></app-nav-bar>
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
@@ -15,29 +16,29 @@
                     <h5 class="title"> {{title}} </h5>
                     <form [formGroup]="form" (ngSubmit)="agreagarventa()">
                         <div class="input-group mb-3">
-                            <select name="" id="" class="form-control" formControlName="Tipo">
+                            <select name="" id="" class="form-control" formControlName="Tipo" [class.green-icon]="this.form.get('Tipo')?.valid" [class.red-icon]="this.form.get('Tipo')?.invalid && this.form.get('Tipo')?.touched" onkeydown="return /[a-z ]/i.test(event.key)">
                                 <option value="Bebidas">Bebidas</option>
                                 <option value="Comidas">Comidas</option>
                             </select>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Producto" formControlName="Producto">
+                            <input type="text" class="form-control" placeholder="Producto" formControlName="Producto" [class.green-icon]="this.form.get('Producto')?.valid" [class.red-icon]="this.form.get('Producto')?.invalid && this.form.get('Producto')?.touched" onkeydown="return /[a-z ]/i.test(event.key)">
                         </div>
                         <div class="input-group mb-3">
-                            <input formControlName="Empleado" type="text" class="form-control" placeholder="Empleado">
+                            <input formControlName="Empleado" type="text" class="form-control" placeholder="Empleado"[class.green-icon]="this.form.get('Empleado')?.valid" [class.red-icon]="this.form.get('Empleado')?.invalid && this.form.get('Empleado')?.touched" onkeydown="return /[a-z ]/i.test(event.key)">
                         </div>
                         <div class="input-group mb-3">
-                            <input formControlName="Cliente" type="text" class="form-control" placeholder="Cliente">
+                            <input formControlName="Cliente" type="text" class="form-control" placeholder="Cliente" [class.green-icon]="this.form.get('Cliente')?.valid" [class.red-icon]="this.form.get('Cliente')?.invalid && this.form.get('Cliente')?.touched" onkeydown="return /[a-z ]/i.test(event.key)">
                         </div>
                         <div class="input-group mb-3">
-                            <input formControlName="Cantidad" type="text" class="form-control" placeholder="Cantidad">
+                            <input formControlName="Cantidad" type="text" class="form-control" placeholder="Cantidad" [class.green-icon]="this.form.get('Cantidad')?.valid" [class.red-icon]="this.form.get('Cantidad')?.invalid && this.form.get('Cantidad')?.touched" >
                         </div>
                         <div class="input-group mb-3">
-                            <input formControlName="Precio" type="text" class="form-control" placeholder="Precio">
+                            <input formControlName="Precio" type="text" class="form-control" placeholder="Precio" [class.green-icon]="this.form.get('Precio')?.valid" [class.red-icon]="this.form.get('Precio')?.invalid && this.form.get('Precio')?.touched">
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button  type="submit" class="btn btn-success bg-primary btn-lg">Agregar</button>
+                            <button  type="submit" class="btn btn-success bg-primary btn-lg" [disabled]="this.form.invalid">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -60,14 +61,14 @@
                                 <td>Eliminar</td>
                             </tr>
                             <tr *ngFor="let Ventas of venta; let i = index">
-                                <td>{{Ventas.Tipo}}</td>
-                                <td>{{Ventas.Producto}}</td>
-                                <td>{{Ventas.Empleado}}</td>
-                                <td>{{Ventas.Cliente}}</td>
-                                <td>{{Ventas.Cantidad}}</td>
-                                <td>{{Ventas.Precio}}</td>
-                                <td><i class="fa-regular fa-pen-to-square text-info"></i></td>
-                                <td><i class="fa-regular fa-trash-can text-danger" (click)="eliminar(i)" ></i></td>
+                                <td>{{Ventas.tipo}}</td>
+                                <td>{{Ventas.producto}}</td>
+                                <td>{{Ventas.empleado}}</td>
+                                <td>{{Ventas.cliente}}</td>
+                                <td>{{Ventas.cantidad}}</td>
+                                <td>{{Ventas.precio}}</td>
+                                <td><i class="fa-regular fa-pen-to-square text-info" (click)="editarVenta(Ventas)" style="cursor: pointer;"></i></td>
+                                <td><i class="fa-regular fa-trash-can text-danger" (click)="eliminar(Ventas.id)" style="cursor: pointer;"></i></td>
                             </tr>
                         </tbody>
                     </table>

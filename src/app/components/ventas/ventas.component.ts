@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { VentaServiceService } from 'src/app/services/venta.service.service';
 
 @Component({
   selector: 'app-ventas',
@@ -9,40 +11,43 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class VentasComponent implements OnInit {
 
   title ="Registrar";
-  venta:any[] = [{
-    Tipo: "Bebida",
-    Producto: "Jugo mixto",
-    Empleado: "Darwin",
-    Cliente: "Uri",
-    Cantidad: "10",
-    Precio:"70"
-  },
-  {
-    Tipo: "Bebida",
-    Producto: "Jugo mixto",
-    Empleado: "Darwin",
-    Cliente: "Uri",
-    Cantidad: "10",
-    Precio:"70"
-  }];
+  id:number|undefined;
+  venta:any[] = [];
 
   form: FormGroup;
 
 
 
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private _ventaService:VentaServiceService) { 
     this.form = this.fb.group({
-      Tipo: [''],
-      Producto: [''],
-      Empleado: [''],
-      Cliente: [''],
-      Cantidad: [''],
-      Precio: ['']
+      Tipo: ['',Validators.required],
+      Producto: ['',Validators.required],
+      Empleado: ['',Validators.required],
+      Cliente: ['',Validators.required],
+      Cantidad: ['',Validators.compose([
+        Validators.required,
+        Validators.pattern(/^[0-9]\d{1,10}$/)
+      ])],
+      Precio: ['',Validators.compose([
+        Validators.required,
+        Validators.pattern(/^[0-9]\d{1,10}$/)
+      ])]
     })
   }
 
   ngOnInit(): void {
+    this.obtenerVentas();
+  }
+
+  obtenerVentas(){
+    this._ventaService.getListVentas().subscribe(data =>{
+      this.venta = data;
+      console.log(data)
+    },error =>{
+      this.toastr.error('Ops ocurrio un error','Error');
+      console.log(error);
+    })
   }
 
   agreagarventa(){
@@ -55,12 +60,54 @@ export class VentasComponent implements OnInit {
       Precio: this.form.get("Precio")?.value
     }
 
-      this.venta.push(venta);
+    if(this.id== undefined){
+      this._ventaService.saveVenta(venta).subscribe(data=>{
+        this.obtenerVentas();
+        console.log(venta);
+        this.form.reset();
+      },error=>{
+        this.toastr.error('Ops ocurrio un error','Error');
+        console.log(error);
+      });
+  }else{
+    venta.id = this.id;
+    this._ventaService.updateVenta(this.id,venta).subscribe(data=>{
       this.form.reset();
+      this.title = "Agregar";
+      this.id= undefined;
+      this.toastr.info('El regitro se actualizo con exito','Registro Actualizado');
+      this.obtenerVentas();
+    },error=>{
+      this.toastr.error('Ops ocurrio un error','Error');
+      console.log(error);
+    })
+    
+  }    
   }
 
-          eliminar(index:number){
-          this.venta.splice(index, 1)
-          }
+  editarVenta(venta:any){
+    this.title = "Editar";
+    this.id = venta.id;
+  
+    this.form.patchValue({
+      Tipo: venta.tipo,
+      Producto: venta.producto,
+      Empleado: venta.empleado,
+      Cliente: venta.cliente,
+      Cantidad:venta.cantidad,
+      Precio: venta.precio
+    })
+  }
+  
+  eliminar(id: number){
+    this._ventaService.deleteVenta(id).subscribe(data=>{
+      this.toastr.error('Usuario eliminado con exito', 'Usuario Eliminado');
+      this.obtenerVentas();
+    },error=>{
+      this.toastr.error('Ops ocurrio un error','Error');
+      console.log(error);
+    })
+    
+  }
 
 }

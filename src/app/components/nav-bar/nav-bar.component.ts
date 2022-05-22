@@ -9,6 +9,9 @@ export class NavBarComponent implements OnInit {
 
   constructor() { }
 
+  cerrarsesion(){
+    localStorage.removeItem("userin");
+  }
   ngOnInit(): void {
   }
 
