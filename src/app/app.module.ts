@@ -8,12 +8,16 @@ import { EmpleadosComponent } from './components/empleados/empleados.component';
 import { VentasComponent } from './components/ventas/ventas.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import {HttpClientModule} from'@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VentaFilterPipe } from './pipes/venta-filter.pipe';
+import {MatTableModule} from '@angular/material/table';
+import { PedidoFilterPipe } from './pipes/pedido-filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ClientesComponent,
     PedidosComponent,
     LoginComponent,
-    InicioComponent
+    InicioComponent,
+    VentaFilterPipe,
+    PedidoFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

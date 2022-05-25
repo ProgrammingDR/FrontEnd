@@ -12,6 +12,8 @@ export class PedidosComponent implements OnInit {
   title ="Registrar";
   pedido:any[] = [];
   id:number | undefined; 
+  
+  filtrofecha:''|undefined;
   form: FormGroup;
 
 
@@ -30,7 +32,8 @@ export class PedidosComponent implements OnInit {
       Precio: ['',Validators.compose([
         Validators.required,
         Validators.pattern(/^[0-9]\d{1,10}$/)
-      ])]
+      ])],
+      Fecha: ['',Validators.required]
     })
   }
 
@@ -55,7 +58,8 @@ export class PedidosComponent implements OnInit {
       Empleado: this.form.get("Empleado")?.value,
       Cliente: this.form.get("Cliente")?.value,
       Cantidad: this.form.get("Cantidad")?.value,
-      Precio: this.form.get("Precio")?.value
+      Precio: this.form.get("Precio")?.value,
+      Fecha: this.form.get("Fecha")?.value
     }
     
     if(this.id== undefined){
@@ -92,8 +96,9 @@ export class PedidosComponent implements OnInit {
       Producto: pedido.producto,
       Empleado: pedido.empleado,
       Cliente: pedido.cliente,
-      Cantidad:pedido.cantidad,
-      Precio: pedido.precio
+      Cantidad:pedido  .cantidad,
+      Precio: pedido.precio,
+      Fecha: pedido.fecha
     })
   }
 

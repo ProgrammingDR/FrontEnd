@@ -65,7 +65,7 @@ form: FormGroup;
       direccion: this.form.get("direccion")?.value
     }
   
-    if(this.id== undefined){
+    if(this.id == undefined){
       this._empleadoService.saveEmpleado(empleados).subscribe(data=>{
         this.obtenerEmpleados();
         console.log(empleados);

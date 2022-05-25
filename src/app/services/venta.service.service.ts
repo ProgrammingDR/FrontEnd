@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class VentaServiceService {
   private myAppUrl='https://localhost:7068/';
   private myApiUrl = 'api/Venta/';
-
+  filtroVenta:"" | undefined;
   constructor(private http:HttpClient) { }
 
   getListVentas():Observable<any>{

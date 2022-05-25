@@ -37,6 +37,9 @@
                         <div class="input-group mb-3">
                             <input formControlName="Precio" type="text" class="form-control" placeholder="Precio"[class.green-icon]="this.form.get('Precio')?.valid" [class.red-icon]="this.form.get('Precio')?.invalid && this.form.get('Precio')?.touched" >
                         </div>
+                        <div class="input-group mb-3">
+                            <input formControlName="Fecha" type="date" class="form-control" placeholder="Fecha" [class.green-icon]="this.form.get('Fecha')?.valid" [class.red-icon]="this.form.get('Fecha')?.invalid && this.form.get('Fecha')?.touched">
+                        </div> 
 
                         <div class="d-grid gap-2">
                             <button  type="submit" class="btn btn-success bg-primary btn-lg"[disabled]="this.form.invalid">Agregar</button>
@@ -52,22 +55,30 @@
                     <table class="table">
                         <tbody>
                             <tr>
+                                <td colspan="9"><h1 align="center">Filtros</h1></td>
+                            </tr>
+                            <tr>
+                                <td colspan="9"><input type="date" name="fecha" id="" [(ngModel)]="filtrofecha" class="form-control"></td>
+                            </tr>
+                            <tr>
                                 <td>Tipo</td>
                                 <td>Producto</td>
                                 <td>Empleado</td>
                                 <td>Cliente</td>
                                 <td>Cantidad</td>
                                 <td>Precio</td>
+                                <td>Fecha</td>
                                 <td>Editar</td>
                                 <td>Eliminar</td>
                             </tr>
-                            <tr *ngFor="let Pedidos of pedido; let i = index">
+                            <tr *ngFor="let Pedidos of pedido | ventaFilter:'fecha':filtrofecha; let i = index">
                                 <td>{{Pedidos.tipo}}</td>
                                 <td>{{Pedidos.producto}}</td>
                                 <td>{{Pedidos.empleado}}</td>
                                 <td>{{Pedidos.cliente}}</td>
                                 <td>{{Pedidos.cantidad}}</td>
                                 <td>{{Pedidos.precio}}</td>
+                                <td>{{Pedidos.fecha}}</td>
                                 <td><i class="fa-regular fa-pen-to-square text-info"(click)="editarPedido(Pedidos)"style="cursor: pointer;"></i></td>
                                 <td><i class="fa-regular fa-trash-can text-danger" (click)="eliminar(Pedidos.id)" style="cursor: pointer;"></i></td>
                             </tr>

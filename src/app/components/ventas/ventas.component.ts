@@ -13,11 +13,11 @@ export class VentasComponent implements OnInit {
   title ="Registrar";
   id:number|undefined;
   venta:any[] = [];
-
+  filtrofecha:''|undefined;
   form: FormGroup;
 
 
-
+ 
 
   constructor(private fb: FormBuilder, private toastr: ToastrService, private _ventaService:VentaServiceService) { 
     this.form = this.fb.group({
@@ -32,7 +32,8 @@ export class VentasComponent implements OnInit {
       Precio: ['',Validators.compose([
         Validators.required,
         Validators.pattern(/^[0-9]\d{1,10}$/)
-      ])]
+      ])],
+      Fecha: ['',Validators.required]
     })
   }
 
@@ -57,7 +58,8 @@ export class VentasComponent implements OnInit {
       Empleado: this.form.get("Empleado")?.value,
       Cliente: this.form.get("Cliente")?.value,
       Cantidad: this.form.get("Cantidad")?.value,
-      Precio: this.form.get("Precio")?.value
+      Precio: this.form.get("Precio")?.value,
+      Fecha: this.form.get("Fecha")?.value
     }
 
     if(this.id== undefined){
@@ -95,7 +97,8 @@ export class VentasComponent implements OnInit {
       Empleado: venta.empleado,
       Cliente: venta.cliente,
       Cantidad:venta.cantidad,
-      Precio: venta.precio
+      Precio: venta.precio,
+      Fecha: venta.fecha
     })
   }
   
