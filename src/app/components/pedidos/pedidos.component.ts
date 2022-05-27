@@ -96,7 +96,7 @@ export class PedidosComponent implements OnInit {
       Producto: pedido.producto,
       Empleado: pedido.empleado,
       Cliente: pedido.cliente,
-      Cantidad:pedido  .cantidad,
+      Cantidad:pedido.cantidad,
       Precio: pedido.precio,
       Fecha: pedido.fecha
     })

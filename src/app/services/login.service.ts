@@ -5,25 +5,17 @@ import { Observable } from 'rxjs/internal/Observable';
 @Injectable({
   providedIn: 'root'
 })
-export class EmpleadoServiceService {
+export class LoginService {
+
   private myAppUrl='https://localhost:7068/';
-  private myApiUrl = 'api/Empleado/';
+  private myApiUrl = 'api/Login/';
 
   constructor(private http:HttpClient) { }
 
-  getListEmpleados():Observable<any>{
+  getListUsers():Observable<any>{
     return this.http.get(this.myAppUrl + this.myApiUrl);
   }
-  deleteEmpleado(id : number):Observable<any>{
-    return this.http.delete(this.myAppUrl + this.myApiUrl + id);
-  }
-
-  saveEmpleado(User:any):Observable<any>{
+  saveUser(User:any):Observable<any>{
     return this.http.post(this.myAppUrl + this.myApiUrl, User);
   }
-
-  updateEmpleado(id:number, User:any):Observable<any>{
-    return this.http.put(this.myAppUrl + this.myApiUrl + id, User);
-  } 
-
 }
