@@ -82,12 +82,11 @@ export class ClientesComponent implements OnInit {
       this.toastr.error('Ops ocurrio un error','Error');
       console.log(error);
     })
-    
   }
 }
 
 editarCliente(cliente:any){
-  this.title = "Editar";
+  this.title = "Editar"; 
   this.id = cliente.id;
 
   this.form.patchValue({
@@ -109,7 +108,5 @@ editarCliente(cliente:any){
       this.toastr.error('Ops ocurrio un error','Error');
       console.log(error);
     })
-    
   }
-
 }

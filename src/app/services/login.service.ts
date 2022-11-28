@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
 
-  private myAppUrl= environment.myAppUrl;
+  private myAppUrl= "https://cafeteriaparaisobackend.azurewebsites.net/";
   private myApiUrl = 'api/Login/';
 
   constructor(private http:HttpClient) { }

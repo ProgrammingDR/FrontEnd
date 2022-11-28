@@ -14,7 +14,7 @@
       <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
       <div class="login-form">
         <div class="sign-in-htm">
-          <form [formGroup]="form" (ngSubmit)="ingresar()">
+          <form [formGroup]="formSingIn" (ngSubmit)="ingresar()">
             <div class="group">
               <label for="user" class="label">Username</label>
               <input id="user" type="text" class="input" formControlName="User">
@@ -24,7 +24,7 @@
               <input id="pass" type="password" class="input" data-type="password" formControlName="Pass">
             </div>
             <div class="group">
-              <input type="submit" class="button" value="Sign In" [disabled]="this.form.invalid"  >
+              <input type="submit" class="button" value="Sign In" [disabled]="this.formSingIn.invalid"  >
             </div>
   
             <div class="hr"></div>
@@ -35,7 +35,7 @@
           
         </div>
         <div class="sign-up-htm">
-         <form [formGroup]="form2" (ngSubmit)="registrar()">
+         <form [formGroup]="formSingUp" (ngSubmit)="registrar()">
           <div class="group">
             <label for="user" class="label">Username</label>
             <input id="user" type="text" class="input" formControlName="User">
@@ -49,7 +49,7 @@
             <input id="pass" type="text" class="input" formControlName="email">
           </div>
           <div class="group">
-            <input type="submit" class="button" value="Sign up" [disabled]="this.form2.invalid">
+            <input type="submit" class="button" value="Sign up" [disabled]="this.formSingUp.invalid">
           </div>
          </form>
           <div class="hr"></div>

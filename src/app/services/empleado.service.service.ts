@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class EmpleadoServiceService {
-  private myAppUrl= environment.myAppUrl;
+  private myAppUrl= "https://cafeteriaparaisobackend.azurewebsites.net/";
   private myApiUrl = 'api/Empleado/';
 
   constructor(private http:HttpClient) { }

@@ -12,77 +12,73 @@ import { LoginService } from 'src/app/services/login.service';
 
 export class LoginComponent implements OnInit {
   
-  Usuario:any[]=[]
+  Users:any[] = []
   
   //Declaracion de los form sing in and sing up
-  form: FormGroup = new FormGroup({});
-  form2: FormGroup = new FormGroup({});
+  formSingIn: FormGroup = new FormGroup({});
+  formSingUp: FormGroup = new FormGroup({});
 
   //inyeccion de dependencias
-  constructor(private fb: FormBuilder, private router: Router,private toastr: ToastrService,private _loginservice:LoginService) { 
-    if(localStorage.getItem("userin") == "true"){
-      router.navigate(["/inicio"])
-    }
-  }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService,
+    private _loginservice:LoginService) { 
+      this.formSingIn = this.fb.group({
+        User: ['',Validators.required],
+        Pass: ['',Validators.required]
+      });
+      this.formSingUp = this.fb.group({
+        User: ['',Validators.required],
+        Pass: ['',Validators.required],
+        email: ['',Validators.required]
+      })
+     }
 
-
+  //Get All users
   obtenerUsuario(){
     this._loginservice.getListUsers().subscribe(data =>{
-      this.Usuario = data;
-      console.log(this.Usuario)
+      this.Users = data;
     },error =>{
       this.toastr.error('Ops ocurrio un error','Error');
       console.log(error);
     })
   }
   
-  //merodo para el sing in
+  //sing in
   ingresar(){
-    const venta:any ={
-      User: this.form.get("User")?.value,
-      Pass: this.form.get("Pass")?.value
+    const venta = {
+      User: this.formSingIn.get("User")?.value,
+      Pass: this.formSingIn.get("Pass")?.value
     }
-    this.obtenerUsuario()
-    if(this.Usuario.some(u => u.User === venta.User && u.Password === venta.Pass)){
+     this.obtenerUsuario()
+     if(this.Users.some(u => u.user === venta.User && u.pass === venta.Pass)){
       this.toastr.success('Inicio de sesion exitoso', 'Inicio de sesion');
-      this.form.reset();
       this.router.navigate(["/inicio"]);
     }else{
       this.toastr.error('Usuario y/o contrase;a incorrectos','Error');
-      this.form.reset();
+      this.formSingIn.reset();
     }
   }
 
-  //Metodo para el sing up
+  //sing up
   registrar(){
-    const venta2:any ={
-      User: this.form2.get("User")?.value,
-      Pass: this.form2.get("Pass")?.value,
-      email: this.form2.get("email")?.value  
+    const singUp = {
+      User: this.formSingUp.get("User")?.value,
+      Pass: this.formSingUp.get("Pass")?.value,
+      email: this.formSingUp.get("email")?.value  
     }
-    this._loginservice.saveUser(venta2).subscribe(data=>{
-      this.obtenerUsuario();
-      console.log(venta2);
-      this.form.reset();
+    this._loginservice.saveUser(singUp).subscribe(data=>{
+      this.toastr.success('Registro exitoso', 'Usuario Registrado');
+      this.formSingUp.reset();
     },error=>{
       this.toastr.error('Ops ocurrio un error','Error');
       console.log(error);
     });
-    this.form2.reset();
-    this.toastr.success('Registro exitoso', 'Usuario Registrado');
   }
 
+  //charge 
   ngOnInit(): void {
-
-    this.obtenerUsuario()
-    this.form = this.fb.group({
-      User: ['',Validators.required],
-      Pass: ['',Validators.required]
-    });
-    this.form2 = this.fb.group({
-      User: ['',Validators.required],
-      Pass: ['',Validators.required],
-      email: ['',Validators.required]
-    })
+    this.obtenerUsuario() 
   }
 }
